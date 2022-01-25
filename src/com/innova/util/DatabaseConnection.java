@@ -17,7 +17,7 @@ public class DatabaseConnection extends DatabaseInformation{
     // 1) private instance oluştur
     // 2) private constructor oluştur
     // 3) dışarı açılacak yapıyı oluşturacağız yani getInstance() methodu
-    private DatabaseConnection instance;
+    private static DatabaseConnection instance;
 
     // private const.
     private DatabaseConnection() {
@@ -35,21 +35,30 @@ public class DatabaseConnection extends DatabaseInformation{
 
 //    amaç: eğer bağlantı varsa onu kullanmak
 //    eğer bağlantı kapatılmış veya bağlantı yoksa instance yapmak
-    public DatabaseConnection getInstance() {
+    public static DatabaseConnection getInstance() {
         try {
             if (instance == null) // bağlantı yoksa
-                this.instance = new DatabaseConnection();
+                instance = new DatabaseConnection();
             else if (instance.connection.isClosed()) // bağlantı kapatılmışsa
-                this.instance = new DatabaseConnection();
+                instance = new DatabaseConnection();
         }catch (SQLException e) {
             e.printStackTrace();
         }
         return instance; // varsa bağlantı onu kullan
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public DatabaseConnection setConnection(Connection connection) {
+        this.connection = connection;
+        return this;
+    }
+
     // test etmek istiyorum çalışıyor mu çalışmıyor mu ?
     public static void main(String[] args) {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
+//        DatabaseConnection databaseConnection = new DatabaseConnection();
     }
 
 }

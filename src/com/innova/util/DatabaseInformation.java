@@ -13,7 +13,7 @@ abstract public class DatabaseInformation {
 //        I got an error about SSL, so I changed the url section instead of using this
 //        this.url = "jdbc:mysql://localhost:3306/innova_patika_project_1";
         this.url = "jdbc:mysql://localhost:3306/innova_patika_project_1?autoReconnect=true&useSSL=false";
-        this.userName = "umut";
+        this.userName = "root";
         this.userPassword = "root";
         this.forNameData = "com.mysql.jdbc.Driver";
 
